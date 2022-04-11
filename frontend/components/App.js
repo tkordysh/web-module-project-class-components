@@ -39,13 +39,27 @@ export default class App extends React.Component {
     }
   }
 
+  toggleTask = (taskId) => {
+    this.setState({
+      tasks: this.state.tasks.map(task => {
+        if (taskId === task.id) {
+          return {
+            ...task,
+            completed: !task.completed
+          }
+        }
+        return task;
+      })
+    })
+  }
+
 
 
   render() {
     return (
       <div>
         <h2>Todo List: </h2>
-        <TodoList tasks={this.state.tasks}/>
+        <TodoList tasks={this.state.tasks} toggleTask={this.toggleTask}/>
       </div>
     )
   }

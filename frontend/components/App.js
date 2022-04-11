@@ -54,6 +54,18 @@ export default class App extends React.Component {
   }
 
 
+  addTask = (e, task) => {
+    const newTask = {
+      name: task,
+      id: Date.now(),
+      completed: false
+    }
+    this.setState({
+      tasks: [...this.state.tasks, newTask]
+    })
+  }
+
+
   clearCompleted = (e) => {
     this.setState({
       tasks: this.state.tasks.filter(task => !task.completed)
@@ -67,7 +79,7 @@ export default class App extends React.Component {
       <div>
         <h2>Todo List: </h2>
         <TodoList tasks={this.state.tasks} toggleTask={this.toggleTask}/>
-        <Form tasks={this.state.tasks} clearCompleted={this.clearCompleted}/>
+        <Form tasks={this.state.tasks} clearCompleted={this.clearCompleted} addTask={this.addTask}/>
       </div>
     )
   }

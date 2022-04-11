@@ -54,12 +54,20 @@ export default class App extends React.Component {
   }
 
 
+  clearCompleted = (e) => {
+    this.setState({
+      tasks: this.state.tasks.filter(task => !task.completed)
+    })
+  }
+
+
 
   render() {
     return (
       <div>
         <h2>Todo List: </h2>
         <TodoList tasks={this.state.tasks} toggleTask={this.toggleTask}/>
+        <Form tasks={this.state.tasks} clearCompleted={this.clearCompleted}/>
       </div>
     )
   }
